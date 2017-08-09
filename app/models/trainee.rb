@@ -15,6 +15,7 @@ class Trainee < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable
 
+  include Authority::UserAbilities
   include Authority::Abilities
 
   with_options if: :um_affiliated? do |dj|
@@ -29,6 +30,12 @@ class Trainee < ActiveRecord::Base
   validates :statement, presence: true, unless: :um_affiliated?
 
   has_many :episodes
+
+  # Trainees don’t have roles but must work with the
+  # same authorizers as DJs.
+  def has_role?(*args)
+    false
+  end
 
   def age
     (Time.zone.now.to_date - created_at.to_date).to_i

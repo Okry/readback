@@ -21,6 +21,10 @@
 
 en:
   activerecord:
+    models:
+      dj: DJ
+      trainee: trainee
+      playlist_editor: playlist editor
     attributes:
       song:
         name: "Song title"

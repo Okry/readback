@@ -39,4 +39,8 @@ module ApplicationHelper
   def on_fm_computer?
     playlist_editor_signed_in?
   end
+
+  def user_signed_in?
+    dj_signed_in? || trainee_signed_in?
+  end
 end

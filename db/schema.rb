@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 20170922212222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "demo_tapes", id: :serial, force: :cascade do |t|
+    t.text "url"
+    t.text "feedback"
+    t.datetime "accepted_at"
+    t.integer "trainee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trainee_id"], name: "index_demo_tapes_on_trainee_id"
+  end
+
   create_table "djs", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "phone"
@@ -263,5 +273,6 @@ ActiveRecord::Schema.define(version: 20170922212222) do
     t.index ["reset_password_token"], name: "index_trainees_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "demo_tapes", "trainees"
   add_foreign_key "trainees", "djs"
 end

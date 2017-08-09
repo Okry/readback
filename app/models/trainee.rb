@@ -12,6 +12,9 @@ class Trainee < ActiveRecord::Base
 
   include Person
 
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :trackable, :validatable
+
   include Authority::Abilities
 
   with_options if: :um_affiliated? do |dj|

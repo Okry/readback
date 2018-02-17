@@ -1,4 +1,13 @@
 module ApplicationHelper
+  # TODO
+  def page_path(*args)
+    '/'
+  end
+
+  def events_path
+    '/'
+  end
+
   def parent_layout(layout)
     @view_flow.set(:layout, output_buffer)
     self.output_buffer = render(file: "layouts/#{layout}")

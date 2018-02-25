@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="margin:0;padding:0;">
 
   <% if flash[:notice] %>
     <div class="floating-notice">
@@ -20,62 +20,100 @@
   <% end %>
 
 
-  <header id="dj-signed-<%= dj_signed_in? ? 'in' : 'out'%>-nav" <%="class=fixed" if on_fm_computer? %>>
-  <div class="right">
-    <% if current_dj %>
-      <% if current_dj.has_role?(:superuser) %>
-        <%= raw "#{link_to("Roster", djs_path)} • " %>
+<header>
+  
+  <div id="dj-signed-<%= dj_signed_in? ? 'in' : 'out'%>-nav" <%="class=fixed" if on_fm_computer? %>>
+    <div class="right">
+      <% if current_dj %>
+        <% if current_dj.has_role?(:superuser) %>
+          <%= raw "#{link_to("Roster", djs_path)} • " %>
+        <% else %>
+          <%= raw "#{link_to("Phone List", djs_path(format: :pdf))} • "%>
+        <% end %>
+        <%= raw "#{link_to("Trainees", trainees_path)} • " if current_dj.can_read? Trainee %>
+        <%= link_to "Sub Board", sub_requests_path %> &mdash;
+        <%= link_to current_dj.name, current_dj %>
+        [<%= link_to "Log out", destroy_dj_session_path, method: :delete %>]
       <% else %>
-        <%= raw "#{link_to("Phone List", djs_path(format: :pdf))} • "%>
+        <%= link_to "Log in", new_dj_session_path %>
       <% end %>
-      <%= raw "#{link_to("Trainees", trainees_path)} • " if current_dj.can_read? Trainee %>
-      <%= link_to "Sub Board", sub_requests_path %> &mdash;
-      <%= link_to current_dj.name, current_dj %>
-      [<%= link_to "Log out", destroy_dj_session_path, method: :delete %>]
-    <% else %>
-      <%= link_to "Log in", new_dj_session_path %>
-    <% end %>
+    </div>
+  </div>
+  
+  
+  <div class="nav-container"
+  
+  style="
+  left:0;
+  position: relative;
+  display:flex;
+  height: 150px;
+  margin-top: 16px;
+  min-width: 100%;">
+      
+    <div class="left" style="flex:1;">
+      <% unless on_fm_computer? %>
+      <div id="player-app" data-turbolinks-permanent />
+      <%= javascript_pack_tag 'player' %>
+      </div>
+      <% end %>
+    </div>
+    
+    <div class="centered-logo-over-nav-links" style="flex:4;text-align:center;">
+      <div class="img-logo" style="">
+        <img style="width: 200px;"
+    src="http://localhost:4000/assets/wcbn-f1c99da4918b1db33f0dde597815d768295eba27e67be4e8fc7d4304e8a07bb8.png" />
+      </div>
+      
+      <ul id="wcbn-org-nav" data-turbolinks-permanent>
+        <li id="LI_2">
+        <a href="https://www.wcbn.org/about" id="A_3">About</a>
+        </li>
+        <li id="LI_4">
+        <a href="https://www.wcbn.org/events" id="A_5">Events</a>
+        </li>
+        <li id="LI_6">
+        <a href="https://www.wcbn.org/content/contact" title="Contact" id="A_7">Contact</a>
+        </li>
+        <li id="LI_8">
+        <a href="<%=semester_path(Semester.current) %>" id="A_9">Schedule</a>
+        </li>
+        <li id="LI_10">
+        <a href="<%=root_path(anchor: 'now')%>" id="A_11">Playlist</a>
+        </li>
+        <li id="LI_10">
+        <a href="https://friends.umich.edu/site/Ecommerce?store_id=2241" id="A_11">Donate</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="right-social-media-icons" style="flex:1;">
+      <div class="social-media-icons" style="position:absolute;top:1.5rem;right:2rem;">
+        <ul>
+          <li>
+            Fa
+          </li>
+          <li>
+            Tw
+          </li>
+          <li>
+            In
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+    
+    
   </div>
 </header>
 
-<div class="container <%= 'dj-signed-in-container' if dj_signed_in? %>">
-<%#FROM DRUPAL%>
-<% fixed_or_absolute = if current_page?(root_path) && on_fm_computer?
-                         'fixed'
-                       else
-                         'absolute'
-                       end%>
-<div id="wcbn-org-nav-container" class="<%=fixed_or_absolute%>-wcbn-org-nav">
-<ul id="wcbn-org-nav" data-turbolinks-permanent>
-  <a href="https://www.wcbn.org/"><%= image_tag(asset_path("wcbn.png"))%></a>
-  <li id="LI_2">
-  <a href="https://www.wcbn.org/about" id="A_3">About</a>
-  </li>
-  <li id="LI_4">
-  <a href="https://www.wcbn.org/events" id="A_5">Events</a>
-  </li>
-  <li id="LI_6">
-  <a href="https://www.wcbn.org/content/contact" title="Contact" id="A_7">Contact</a>
-  </li>
-  <li id="LI_8">
-  <a href="<%=semester_path(Semester.current) %>" id="A_9">Schedule</a>
-  </li>
-  <li id="LI_10">
-  <a href="<%=root_path(anchor: 'now')%>" id="A_11">Playlist</a>
-  </li>
-  <li id="LI_10">
-  <a href="https://friends.umich.edu/site/Ecommerce?store_id=2241" id="A_11">Donate</a>
-  </li>
-</ul>
-</div>
 
-<%= yield %>
 
-<% unless on_fm_computer? %>
-<div id="player-app" data-turbolinks-permanent />
-<%= javascript_pack_tag 'player' %>
-</div>
-<% end %>
+
+
+<!-- <%= yield %> -->
+
 
 <% if Rails.env.production? %>
 <script>

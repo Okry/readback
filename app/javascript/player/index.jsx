@@ -4,7 +4,7 @@
  */
 
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import PlayPauseButton from './PlayPauseButton'
 import SongInformation from './SongInformation'
@@ -13,15 +13,37 @@ import type { Song } from 'models'
 
 const WCBN_HD_STREAM_URL = 'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
 
+const moving_underline = keyframes`
+  from {
+    content: "";
+    width: 0px;
+    opacity: 0;
+  }
+
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+`
+
+const StatusBar = styled.span`
+  position: absolute;
+  height: 1px;
+  bottom: 0px;
+  left: 0;
+  background-color: #d34eb4;
+  animation: ${p =>
+    p.playing ? moving_underline + ' 2s ease-out infinite' : ''};
+`
+
 const Container = styled.div`
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   left: 0;
   display: flex;
   align-items: stretch;
 
-  width: ${p => p.playing ? 'auto' : '0'};
-  color: ${p => p.theme.white};
+  width: auto;
+  color: black;
   font-family: 'Lato';
 `
 
@@ -68,11 +90,12 @@ class Player extends React.Component<Props, { playing: boolean }> {
   render () {
     const { song } = this.props
     const { playing } = this.state
-    
+
     return (
       <Container playing={playing}>
         <PlayPauseButton playing={playing} onClick={this.handlePlayPause} />
         <SongInformation visible={playing} song={song} />
+        <StatusBar playing={playing} />
       </Container>
     )
   }

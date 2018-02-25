@@ -8,10 +8,9 @@ import styled, { css } from 'styled-components'
 import { rgba } from 'polished'
 
 const Container = styled.div`
-  background-color: ${props => props.theme.blue};
-  padding: 10px;
-  padding-right: 6px;
-
+  width: 50px;
+  height: 50px;
+  padding: 20px 5px 20px 20px;
   z-index: 1;
 `
 
@@ -22,30 +21,28 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  color: ${p => p.theme.white};
+  color: black;
   text-shadow: none;
 
-  border: none;
+  border: 2px solid black;
   border-radius: 50%;
   box-shadow: none;
   background: transparent;
 
-  transition: background-color 0.7s ease;
-
   cursor: pointer;
 
   .tab-focus &:focus {
-    border: 1px solid ${p => rgba(p.theme.white, 0.4)};
-    background: ${p => rgba(p.theme.white, 0.15)};
+    border: 1px solid ${p => rgba('white', 0.4)};
+    background: ${p => rgba('black', 0.15)};
   }
 
   &:hover {
-    background: ${p => rgba(p.theme.white, 0.15)};
+    background: ${p => rgba('white', 0.15)};
   }
 
   &:active {
     box-shadow: none;
-    background: ${p => rgba(p.theme.white, 0.3)};
+    background: ${p => rgba('white', 0.3)};
   }
 
   &:focus {

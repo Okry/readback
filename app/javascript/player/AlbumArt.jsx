@@ -13,8 +13,8 @@ import type { Song } from 'models'
 
 const Image = styled(ImageZoom).attrs({ role: 'presentation' })`
   background-color: ${p => rgba(p.theme.white, 0.4)};
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
   margin-right: 10px;
 `

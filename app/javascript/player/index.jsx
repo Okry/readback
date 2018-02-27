@@ -38,11 +38,11 @@ const StatusBar = styled.span`
 
 const Container = styled.div`
   position: absolute;
-  left: 0;
+  right: 0;
   display: flex;
   align-items: stretch;
 
-  width: auto;
+  flex: auto;
   color: black;
   font-family: 'Lato';
 `

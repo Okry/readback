@@ -4,6 +4,7 @@
   <title>WCBN-FM <%= content_for?(:title) ? " — " + content_for(:title): "" %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v4.7.0/js/all.js"></script> -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <%= csrf_meta_tags %>
 </head>
@@ -40,46 +41,54 @@
   </nav>
   
   
-  <div class="nav-container">
+  <div class="nav-container" data-turbolinks-permanent>
     
     <div class="left social-media-container">
       <ul class="social-media-icons">
         <li>
-          <i class="fab fa-facebook"></i>
+          <a href="https://www.facebook.com/wcbn88.3fm/">
+            <i class="fab fa-facebook"></i>
+          </a>
         </li>
         <li>
-          <i class="fab fa-twitter"></i>
+          <a href="https://twitter.com/WCBN_FM">
+            <i class="fab fa-twitter"></i>
+          </a>
         </li>
         <li>
-          <i class="fab fa-instagram"></i>
+          <a href="https://www.instagram.com/wcbn_fm/">
+            <i class="fab fa-instagram"></i>
+          </a>
         </li>
       </ul>
     </div>
-      
-    <!-- <div class="img-logo">
-      <img src="http://localhost:4000/assets/wcbn-f1c99da4918b1db33f0dde597815d768295eba27e67be4e8fc7d4304e8a07bb8.png" />
-    </div>
     
-    <div class="primary-nav" style="flex:4;text-align:center;">
+  
+    
+    <nav id="primary-nav">
       
-      <ul id="wcbn-org-nav" data-turbolinks-permanent>
-        
-        <a href="https://www.wcbn.org/about" id="A_3">About</a>
-        <a href="https://www.wcbn.org/events" id="A_5">Events</a>
-        <a href="https://www.wcbn.org/content/contact" title="Contact" id="A_7">Contact</a>
-        <a href="<%=semester_path(Semester.current) %>" id="A_9">Schedule</a>
-        <a href="<%=root_path(anchor: 'now')%>" id="A_11">Playlist</a>
-        <a href="https://friends.umich.edu/site/Ecommerce?store_id=2241" id="A_11">Donate</a>
+      <span class="vertical-align-helper"></span>
+      <!-- <a href="<%=root_path(anchor: 'now')%>"> -->
+      <img href="<%=root_path(anchor: 'now')%>" id ="primary-nav-logo" src="http://localhost:4000/assets/wcbn-f1c99da4918b1db33f0dde597815d768295eba27e67be4e8fc7d4304e8a07bb8.png" />
+      <!-- </a> -->
+      
+      <ul id="primary-nav-links">
+        <a href="https://www.wcbn.org/about"><li>About</li></a>
+        <a href="https://www.wcbn.org/events"><li>Events</li></a>
+        <a href="https://www.wcbn.org/content/contact"><li>Contact</li></a>
+        <a href="<%=semester_path(Semester.current) %>"><li>Schedule</li></a>
+        <a href="<%=root_path(anchor: 'now')%>"><li>Playlist</li></a>
+        <a href="https://friends.umich.edu/site/Ecommerce?store_id=2241"><li>Donate</li></a>
       </ul>
-    </div> -->
+      
+    </nav>
     
-    <!-- <div class="right" style="flex:1;">
+    
+    <div id="player-app">
       <% unless on_fm_computer? %>
-        <div id="player-app" data-turbolinks-permanent>
         <%= javascript_pack_tag 'player' %>
-        </div>
       <% end %>
-    </div> -->
+    </div>
     
   </div>
     
@@ -87,7 +96,7 @@
 
 
 
-
+<!-- <%= yield %> -->
 
 
 

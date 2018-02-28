@@ -16,6 +16,12 @@ body {
   transition: all 1s ease-in-out;
   -webkit-font-smoothing: antialiased;
 }
+
+a,
+a:visited {
+  color: inherit;
+}
+
 .container {
   width: 90%;
   margin: auto;
@@ -79,50 +85,7 @@ body {
   background-color: #ffa79e;
 }
 
-#dj-nav {
-  top: 0;
-  min-width: 100%;
-  z-index: 99;
-  color: black;
-  text-align: right;
-
-  a {
-    color: black;
-    padding: 0em 1em;
-    text-decoration: none;
-  }
-}
-#dj-nav a:hover {
-  background-color: black;
-  transition: 0.5s;
-  color: white;
-}
-
-#dj-nav-signed-in {
-  @extend #dj-nav;
-  background-color: whitesmoke;
-  border-bottom: 1px dotted black;
-}
-
-.nav-container {
-  left: 0;
-  display: flex;
-  height: 150px;
-  min-width: 100%;
-}
-
-.social-media-container {
-  flex: 1;
-
-  .social-media-icons {
-    list-style: none;
-  }
-}
-
-.img-logo img {
-  width: 200px;
-}
-
+// OLD STUFF
 #headline {
   padding: 0 1.5em;
   padding-top: 1em;
@@ -277,14 +240,6 @@ $step-size-heading: 0.25;
 .showinfo .with {
   padding-left: 1.5em;
   font-style: italic;
-}
-
-a {
-  color: #41a5e8;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
 }
 
 .field {

@@ -17,13 +17,12 @@ const Container = styled.div`
 `
 
 const InfoBox = styled.div`
-  max-width: 300px;
+  flex: 1;
   max-height: 90px;
   padding: 0 15px;
   border-left: 1px solid ${p => rgba(p.theme.white, 0.4)};
   display: flex;
   align-items: flex-start;
-  overflow: hidden;
   line-height: 23px;
 `
 

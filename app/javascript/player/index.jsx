@@ -10,31 +10,11 @@ import ReactCardFlip from 'react-card-flip'
 import PlayPauseButton from './PlayPauseButton'
 import SongInformation from './SongInformation'
 import ShowInformation from './ShowInformation'
+import SineWave from './SineWave'
 
 import type { Song } from 'models'
 
 const WCBN_HD_STREAM_URL = 'http://floyd.wcbn.org:8000/wcbn-hd.mp3'
-
-const moving_underline = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`
-
-const SineWave = styled.span`
-  position: absolute;
-  height: 1px;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  background-color: #d34eb4;
-  animation: ${p => (p.playing ? moving_underline + ' 1s ease infinite' : '')};
-`
 
 const Container = styled.div`
   width: 100%;
@@ -89,11 +69,11 @@ class Player extends React.Component<Props, { playing: boolean }> {
     const { playing } = this.state
 
     return (
-      <Container playing={playing}>
+      <Container>
         <PlayPauseButton playing={playing} onClick={this.handlePlayPause} />
         <ReactCardFlip isFlipped={playing}>
           <ShowInformation key="front" />
-          <SongInformation visible={playing} song={song} key="back" />
+          <SongInformation key="back" song={song} />
         </ReactCardFlip>
         <SineWave playing={playing} />
       </Container>
@@ -105,7 +85,12 @@ class Player extends React.Component<Props, { playing: boolean }> {
   _play = () =>
     this.setState({ playing: true }, () => {
       this.audioElement.src = WCBN_HD_STREAM_URL
+      this.audioElement.id = 'stream'
+      if (document.body != null) {
+        document.body.appendChild(this.audioElement)
+      }
       this.audioElement.play()
+
       addTargetBlankToDrupalLinks()
     })
   _pause = () =>

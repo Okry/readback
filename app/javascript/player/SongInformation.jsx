@@ -26,8 +26,8 @@ const InfoBox = styled.div`
   line-height: 23px;
 `
 
-type Props = { song: Song, visible: boolean }
-const SongInformation = ({ song, visible }: Props) => {
+type Props = { song: Song }
+const SongInformation = ({ song }: Props) => {
   const { artist, name, album, label, year } = song
   return (
     <Container>

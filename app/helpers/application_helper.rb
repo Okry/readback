@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   # TODO
-  def page_path(*args)
+  def page_path(*_args)
     '/'
   end
 
@@ -47,5 +49,13 @@ module ApplicationHelper
 
   def on_fm_computer?
     playlist_editor_signed_in?
+  end
+
+  def external_link_to(*args, **kwargs, &blk)
+    link_to(
+      *args,
+      **kwargs.merge(target: '_blank', rel: 'noopener noreferrer'),
+      &blk
+    )
   end
 end

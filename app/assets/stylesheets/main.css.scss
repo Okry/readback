@@ -58,13 +58,12 @@ a:visited {
   position: fixed;
   top: -10em;
   padding: 1.5em 1.5em 0.5em 1.5em;
-  background-color: #c1e3f9;
-  border: 1px solid #3498db;
-  border-radius: 0.5em;
+  background-color: gainsboro;
+  border: 1px solid gray;
   left: 30%;
   right: 30%;
   z-index: 200;
-  font-weight: 900;
+  font-weight: bold;
   text-align: center;
   p {
     margin: 0;

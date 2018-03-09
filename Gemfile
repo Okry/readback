@@ -54,6 +54,8 @@ gem 'rails-latex'
 gem 'redcarpet'
 # For so I only have to write the emails once.
 gem 'maildown'
+# Inline SVGs can be styled with CSS
+gem 'inline_svg'
 
 ##############
 # JavaScript #
